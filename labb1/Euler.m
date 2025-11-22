@@ -14,6 +14,6 @@ for ii=1:n
     yv(:,ii+1)=yv(ii)+h*quatercar(tv(ii),yv(:,ii));
 end
 
-ans = [tv; yv]
+ans = [tv; yv];
 
 return
