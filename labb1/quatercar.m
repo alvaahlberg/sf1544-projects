@@ -1,5 +1,6 @@
-%Uppgift 1, skriv om rörelseekvationerna som ett första ordningens system i
-%tiden på formen dv/dt = Hv + g(t).
+function[dv]=quatercar(t,v)
+%Funktionen tar in ett värde på tid och första värdet på vektorn dv/dt =
+%y0. Den skriver om 
 
 m1 = 475;   %input('Skriv in första massan (kg): ');
 m2 = 53;   %input('Skriv in andra massan (kg): ');
@@ -7,27 +8,22 @@ k1 = 5400;   %input('Skriv in första fjäderkonstanten (kg/s^2): ');
 k2 = 135000;    %input('Skriv in andra fjäderkonstanten (kg/s^2): ');
 c1 = 310;   %input('Skriv in första dämpningskonstanten (kg/s): ');
 c2 = 1200;   %input('Skriv in andra dämpningskonstanten (kg/s): ');
-v = (65/3.6);    %input('Skriv in hastigheten på bilen (m/s): ');
+vbil = (65/3.6);    %input('Skriv in hastigheten på bilen (m/s): ');
 H = 0.24; %input('Skriv in höjden på guppet (m): ');
 L = 1;    %input('Skriv in längden på guppet (m): ');
 
 
-t = 1;
-
-if t > (L/(v*t))
+if t > (L/(vbil*t))
     h = 0;
 else
-    h = (H/2)*(1-cos(2*pi*v*t/L))
+    h = (H/2)*(1-cos(2*pi*vbil*t/L))
 end
 
-M = [m1 0; 0 m2]
-C = [c1 -c1; -c1 (c1+c2)]
-K = [k1 -k1; -k1 (k1+k2)]
-F = [0; ((k2*h)+(c2*h))]
+A = [0 0 1 0
+    0 0 0 1 
+    -(k1/m1) (k1/m1) -(c1/m1) (c1/m1)
+    (k1/m2) -((k1+k2)/m2) (c1/m2) ((c2*h)/m2)]
 
-syms z1 z2
-dz1 = diff(z1)
-dz2 = diff(z2)
+g = [0 0 0 (((k2*h)/m2)+((c2*h)/m2))]
 
-x = tanspose([z1 z2 dz1 dz2])
 
