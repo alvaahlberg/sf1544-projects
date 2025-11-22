@@ -16,15 +16,15 @@ L = 1;    %input('Skriv in längden på guppet (m): ');
 if t > (L/(vbil*t))
     h = 0;
 else
-    h = (H/2)*(1-cos(2*pi*vbil*t/L))
+    h = (H/2)*(1-cos(2*pi*vbil*t/L));
 end
 
 
 A = [0 0 1 0
     0 0 0 1 
     -(k1/m1) (k1/m1) -(c1/m1) (c1/m1)
-    (k1/m2) -((k1+k2)/m2) (c1/m2) ((c2*h)/m2)]
+    (k1/m2) -((k1+k2)/m2) (c1/m2) ((c2*h)/m2)];
 
-g = [0;0;0;(((k2*h)/m2)+((c2*h)/m2))]
+g = [0;0;0;(((k2*h)/m2)+((c2*h)/m2))];
 
 dv = (A*v + g);
