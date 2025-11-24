@@ -1,9 +1,9 @@
-function [ans]=Euler(quatercar,tspan,v0,n)
+function [ans]=Euler(quatercar,tspan,v0,h)
 %Löser dv = v(t,y) med initialvärde v(t0) = v0
 
 t0=tspan(1);
 tfin=tspan(2);
-h=(tfin-t0)/n;
+n = (tfin-t0)/h;
 
 tv=t0+h*(0:n);
 N = size(tv);
