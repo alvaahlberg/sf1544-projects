@@ -17,6 +17,7 @@ z2 = yv(:,2);
 
 subplot(3,1,1)
 plot(tv,z1,tv,z2)
+title('ODE45')
 xlabel('Tid (s)')
 ylabel('Förskjutning (m)')
 legend('z1','z2')
@@ -37,6 +38,7 @@ end
 
 subplot(3,1,2)
 plot(tv, dtv)
+title('ODE45 tidssteg')
 xlabel('Tid (s)')
 ylabel('Steglängd')
 
@@ -49,6 +51,7 @@ Z2 = result1(3,:);
 
 subplot(3,1,3)
 plot(Tid,Z2,tv,z2)
+title('Euler vs ODE45')
 xlabel('Tid (s)')
 ylabel('Förskjutning (m)')
 legend('z2 Euler', 'z2 ODE45')
