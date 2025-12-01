@@ -8,7 +8,7 @@ N = size(tv);
 yv=zeros(4, N(2));
 yv(:,1)=v0;
 I = eye(4);
-invers = inv(2*I - h*A_styv)
+invers = inv(2*I - h*A_styv);
 
 for ii=1:(n-1)
     % yv(:,ii+1)=yv(:,ii)+ h * (quatercar(tv(ii),yv(:,ii))+quatercar(tv(ii+1),yv(:,(ii+1)))/2);
