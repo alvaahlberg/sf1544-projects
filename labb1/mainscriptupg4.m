@@ -1,4 +1,4 @@
-
+clear
 %4a
 konst = values;
 konst(4) = 100*konst(4);
@@ -50,9 +50,9 @@ for ii=1:4
     result = imp_trap(@(t,y) quatercar(A_styv,konst,t,y), @(t) quaterg(konst,t), tspanfix, A_styv, v0, stegvek(ii));
     
     %Läs doc för att fatta interp1 har inte gjort än :(
-    y_interpolate = interp1(tv,yv(:,1),result(:,1)); 
+    y_interpolate = interp1(tv,yv(:,1),result(1,:)); 
     % ska ta skillnaden mellan dem
-    diff = abs(result(:,3)-y_interpolate);
+    diff = abs(result(3,:)-y_interpolate);
     
     % skriver ut fel men avg funkar inte
     Maxfel = max(diff)
