@@ -27,7 +27,7 @@ for ii=1:3
     hold on
 end
 hold off
-title('Implicita trapetsmetoden')
+title("Implicita trapetsmetoden")
 xlabel('Tid (s)')
 ylabel('Förskjutning (m)')
 legend('1', '10','100')
@@ -46,6 +46,7 @@ options = odeset('RelTol',1e-9, 'AbsTol', 1e-9, 'Refine', 1);
 sol = ode45(@(t,y) quatercar(A_styv,konst,t,y),tspanfix,v0,options);
 % yv kommer vara mycket längre än result
 figure2 = figure;
+titlevek = ["Steglängd h"; "Steglängd h/2";"Steglängd h/4";"Steglängd h/8"];
 for ii=1:4
     result2 = imp_trap(@(t,y) quatercar(A_styv,konst,t,y), @(t) quaterg(konst,t), tspanfix, A_styv, v0, stegvek(ii,:));
     y_ny = deval(sol,result2(1,:));
@@ -63,6 +64,11 @@ for ii=1:4
     Minfel = min(diff)
     Avgfel = mean(diff)
     
+
+    %Lopping funkar inte riktigt lol
+    title(titlevek(ii))
+    xlabel('Tid (s)')
+    ylabel('Abs fel')
     subplot (4,1,ii)
     plot(result2(1,:),diff)
     hold on
