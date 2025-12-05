@@ -45,12 +45,14 @@ sol = ode45(@(t,y) quatercar(A_styv,konst,t,y),tspanfix,v0,options);
 figure2 = figure;
 titlevek = ["Steglängd h"; "Steglängd h/2";"Steglängd h/4";"Steglängd h/8"];
 
+maxfel = [0,0,0,0];
+
 for ii=1:4
     result2 = imp_trap(@(t,y) quatercar(A_styv,konst,t,y), @(t) quaterg(konst,t), tspanfix, A_styv, v0, stegvek(ii,:));
     y_ny = deval(sol,result2(1,:));
     diff = abs(result2(3,:)-y_ny(2,:));
 
-    Maxfel = max(diff)
+    maxfel(ii) = max(diff);
 
     %Lopping funkar inte riktigt lol
     
@@ -62,4 +64,15 @@ for ii=1:4
     hold on
 end
  hold off
+
+fel_h1 = maxfel(1)
+fel_h2 = maxfel(2)
+fel_h3 = maxfel(3)
+fel_h4 = maxfel(4)
+
+fel_h1_fjardedel = fel_h1/4
+
+
+
+
 
