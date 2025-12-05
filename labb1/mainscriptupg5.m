@@ -5,10 +5,19 @@ kv0 = input("Skriv initialgissning av k-värdena: ");
 tol = input("Skriv toleransen för newtonmetoden: ");
 svarvek = newtons_metod(kv0,tol);
 
-k_1_opt = svarvek(1);
-k_2_opt = svarvek(2);
+k_1_opt = svarvek(1,1)
+k_2_opt = svarvek(2,1)
 
 %5b
+
+storlek_e = size(svarvek);
+l_e = storlek_e(2)-1;
+
+e_n2 = svarvek(:,l_e);
+e_n1 = svarvek(:,(l_e - 2));
+
+M_1 = e_n2(1) / (e_n1(1))^2
+M_2 = e_n2(2) / (e_n1(2))^2
 
 
 %5c
@@ -22,8 +31,8 @@ v0 = [0;0;0;0];
 
 ref_euler = Euler(@(t,y) quatercar(A_ref,konst,t,y),tspan, v0,h);
 
-konst(3) = svarvek(1);
-konst(4) = svarvek(2);
+konst(3) = svarvek(1,1);
+konst(4) = svarvek(2,1);
 A_ny = matrixA(konst);
 
 ny_euler = Euler(@(t,y) quatercar(A_ny,konst,t,y),tspan, v0,h);
